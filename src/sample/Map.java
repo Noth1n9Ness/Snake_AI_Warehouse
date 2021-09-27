@@ -1,23 +1,22 @@
 package sample;
 public class Map {
 
-    final int ROW_COUNT, COL_COUNT;
+    final int ROW_COUNT, COLUMN_COUNT;
     private Cell[][] cells;
     private Cell food;
 
     public Map(int rowCount, int columnCount)
     {
         ROW_COUNT = rowCount;
-        COL_COUNT = columnCount;
+        COLUMN_COUNT = columnCount;
 
-        cells = new Cell[ROW_COUNT][COL_COUNT];
+        cells = new Cell[ROW_COUNT][COLUMN_COUNT];
         for (int row = 0; row < ROW_COUNT; row++) {
-            for (int column = 0; column < COL_COUNT; column++) {
+            for (int column = 0; column < COLUMN_COUNT; column++) {
                 cells[row][column] = new Cell(row, column);
             }
         }
     }
-
     public void initMap(int[][] map) {
         for (int row = 0; row < map.length; row++) {
             for(int col = 0; col < map[0].length; col++) {
@@ -56,7 +55,7 @@ public class Map {
         if (0 > row || row>=ROW_COUNT) {
             return false;
         }
-        if (0 > col || col>=COL_COUNT) {
+        if (0 > col || col>= COLUMN_COUNT) {
             return false;
         }
         return true;
@@ -77,7 +76,7 @@ public class Map {
         int row=0,column=0;
         while(true){
             row = (int)(Math.random() * ROW_COUNT);
-            column = (int)(Math.random() * COL_COUNT);
+            column = (int)(Math.random() * COLUMN_COUNT);
             if(cells[row][column].getCellType()!=CellType.SNAKE_NODE)
                 break;
         }

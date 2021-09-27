@@ -18,15 +18,13 @@ import java.util.LinkedList;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello Scene Builder");
-//        Group root = new Group();
-//        Canvas canvas = new Canvas(300,250);
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//        drawShapes(gc);
-//        root.getChildren().add(canvas);
-        primaryStage.setScene(new Scene(root,1000,1000));
-        primaryStage.show();
+        String fxmlResource = "sample.fxml";
+        Parent panel;
+        panel = FXMLLoader.load(getClass().getResource(fxmlResource));
+        Scene scene = new Scene(panel);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void drawShapes(GraphicsContext gc) {
