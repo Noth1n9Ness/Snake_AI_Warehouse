@@ -1,7 +1,6 @@
 package sample;
 
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -16,12 +15,12 @@ public class BFS implements Algorithm{
 
     @Override
     public LinkedList<Cell> generate(Map map, Snake snake) {
-        visited = new boolean[map.ROW_COUNT][map.COL_COUNT];
-        trace = new LinkedList[map.ROW_COUNT][map.COL_COUNT];
-        distance = new int[map.ROW_COUNT][map.COL_COUNT];
+        visited = new boolean[map.ROW_COUNT][map.COLUMN_COUNT];
+        trace = new LinkedList[map.ROW_COUNT][map.COLUMN_COUNT];
+        distance = new int[map.ROW_COUNT][map.COLUMN_COUNT];
         queue = new LinkedList<Cell>();
         for (int i = 0; i < map.ROW_COUNT; i++) {
-            for (int j = 0;j < map.COL_COUNT; j++)
+            for (int j = 0; j < map.COLUMN_COUNT; j++)
                 distance[i][j] = Integer.MAX_VALUE;
         }
 
@@ -41,7 +40,8 @@ public class BFS implements Algorithm{
                     queue.addLast(moveToCell);
                     visited[moveToCell.getRow()][moveToCell.getCol()] = true;
                     trace[moveToCell.getRow()][moveToCell.getCol()] = new LinkedList<>();
-                    trace[moveToCell.getRow()][moveToCell.getCol()] = this.cloneAndAddCellTrace(trace[current.getRow()][current.getCol()], moveToCell);
+                    trace[moveToCell.getRow()][moveToCell.getCol()]
+                            = this.cloneAndAddCellTrace(trace[current.getRow()][current.getCol()], moveToCell);
                 }
             }
         }
