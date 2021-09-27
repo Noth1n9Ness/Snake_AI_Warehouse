@@ -54,32 +54,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-//        int[][] sampleMap = {
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//                {0,0,0,0,0,0,0,0,0,0},
-//        };
-//        Map map = new Map(10,10);
-//        map.initMap(sampleMap);
-//        Snake snake = new Snake(new Cell(4,9));
-//        AlgorithmFactory algorithmFactory = new AlgorithmFactory();
-//        for(int i=0; i<4; i++) {
-//            map.generateFood();
-//            Algorithm algorithm = algorithmFactory.getAlgorithm("BFS");
-//            LinkedList<Cell> result = algorithm.generate(map, snake);
-//            Iterator<Cell> iterator = result.iterator();
-//            while(iterator.hasNext()) {
-//                Cell currentCell = iterator.next();
-//                System.out.println(currentCell.getRow() + " " + currentCell.getCol());
-//            }
-//            snake = new Snake(map.getFood());
-//        }
     }
 }
