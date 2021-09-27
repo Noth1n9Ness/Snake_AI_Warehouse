@@ -43,7 +43,7 @@ public class FXController
     }
 
     @FXML
-    private void test(ActionEvent event) {
+    private void moveSnake(ActionEvent event) {
         GraphicsContext graphics = canvas.getGraphicsContext2D();
         visualizer.draw(graphics);
     }
