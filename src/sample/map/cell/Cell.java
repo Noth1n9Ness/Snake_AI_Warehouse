@@ -7,7 +7,7 @@ import sample.misc.Point;
 
 public abstract class Cell implements IDrawable {
     public static NullCell NULL = new NullCell();
-    public static int CELL_SIZE = 1;
+    public static int SIZE = 1;
     private Point point;
     public Cell() {
         point = new Point(0, 0);
@@ -29,8 +29,8 @@ public abstract class Cell implements IDrawable {
 
     @Override
     public void draw(GraphicsContext graphics, Point origin) {
-        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), CELL_SIZE)), new Point(-CELL_SIZE / 2, -CELL_SIZE / 2));
-        graphics.strokeRect(point.getX(), point.getY(), CELL_SIZE, CELL_SIZE);
+        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
+        graphics.strokeRect(point.getX(), point.getY(), SIZE, SIZE);
     }
 
     public Point getPoint() { return point; }

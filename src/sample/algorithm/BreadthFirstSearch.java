@@ -73,14 +73,11 @@ public class BreadthFirstSearch implements Algorithm{
                         BodyCell bodyCell = (BodyCell) next.getCell();
                         if (depth <= bodyCell.getBody().getTimestamp() - timestamp) continue;
                     }
-                    if (next.getRow() == 0 && next.getColumn() == 0) {
-                        next = next;
-                    }
                     newCount++;
                     queue.add(next);
                     trace[nextIndex] = Utils.clone(trace[currentIndex]);
                     trace[nextIndex].addLast(next);
-                    if (next.getCell() instanceof FoodCell) {
+                    if (next.getCell() instanceof InventoryCell) {
                         found = true;
                         savedIndex = nextIndex;
                         break;

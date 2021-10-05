@@ -16,8 +16,8 @@ public class ShelfCell extends Cell {
     @Override
     public void draw(GraphicsContext graphics, Point origin) {
         graphics.setFill(Color.BROWN);
-        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), CELL_SIZE)), new Point(-CELL_SIZE / 2, -CELL_SIZE / 2));
-        graphics.fillRect(point.getX(), point.getY(), CELL_SIZE, CELL_SIZE);
+        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
+        graphics.fillRect(point.getX() + 1, point.getY() + 1, SIZE - 2, SIZE - 2);
     }
 
     @Override

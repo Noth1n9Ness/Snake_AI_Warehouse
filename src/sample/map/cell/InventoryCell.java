@@ -5,11 +5,11 @@ import javafx.scene.paint.Color;
 import sample.map.snake.Snake;
 import sample.misc.Point;
 
-public class FoodCell extends Cell{
-    public FoodCell() {
+public class InventoryCell extends Cell{
+    public InventoryCell() {
         super();
     }
-    public FoodCell(int row, int column) {
+    public InventoryCell(int row, int column) {
         super(row, column);
     }
 

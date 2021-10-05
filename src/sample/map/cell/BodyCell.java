@@ -19,8 +19,9 @@ public class BodyCell extends Cell {
 
     @Override
     public void draw(GraphicsContext graphics, Point origin) {
-        graphics.setStroke(Color.GREEN);
-        super.draw(graphics, origin);
+        graphics.setFill(Color.GREEN);
+        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
+        graphics.fillOval(point.getX(), point.getY(), SIZE, SIZE);
     }
 
     @Override

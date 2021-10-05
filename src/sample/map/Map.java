@@ -1,15 +1,24 @@
 package sample.map;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import sample.map.cell.*;
 import sample.map.snake.Body;
 import sample.map.snake.Snake;
+import sample.misc.IDrawable;
 import sample.misc.Point;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Map {
-    private int rowNumber, columnNumber;
+public class Map implements IDrawable {
+    private int rowNumber, columnNumber, totalNumber;
     private ArrayList<Cell> cells;
+    private Snake snake;
+
+    public Snake getSnake() {
+        return snake;
+    }
 
     public int getRowNumber() {
         return rowNumber;
@@ -41,13 +50,33 @@ public class Map {
                 switch (initMap[row][column]) {
                     // case 1: cell = new BodyCell(); break;
                     case 2: cell = new ShelfCell(); break;
-                    case 3: cell = new FoodCell(); break;
+                    case 3: cell = new InventoryCell(); break;
                     default: cell = new EmptyCell();
                 }
                 cells.add(cell.setRow(column).setColumn(row));
             }
         }
         return;
+    }
+    public void setMap(int shelfNumber, int blockNumber, int shelfLength) {
+        rowNumber = 2 + 3 * shelfNumber;
+        columnNumber = 2 + (shelfLength + 2) * blockNumber - 1;
+        totalNumber = rowNumber * columnNumber;
+        cells = new ArrayList<>(Collections.nCopies(totalNumber, null));
+        for (int block = 0; block < blockNumber; block++) {
+            for (int shelf = 0; shelf < shelfNumber; shelf++) {
+                for (int shelfIndex = 0; shelfIndex < shelfLength; shelfIndex++) {
+                    int row = 2 + 3 * shelf;
+                    int column = 2 + (shelfLength + 2) * block - 1 + shelfIndex;
+                    cells.set(convert(column, row), new ShelfCell(column, row));
+                }
+            }
+        }
+        for (int index = 0; index < totalNumber; index++) {
+            if (!(cells.get(index) instanceof ShelfCell)) cells.set(index, new EmptyCell(index / totalNumber, index % totalNumber));
+        }
+        snake = new Snake(this, new Point(1, rowNumber - 1), Direction.RIGHT);
+
     }
     public void fillSnake(Snake snake) {
         for (Body body : snake.getBodies()) {
@@ -67,6 +96,23 @@ public class Map {
         return row * columnNumber + column;
     }
     public int convert(Point point) {
-        return convert(point.getX(), point.getY());
+        return convert(point.getY(), point.getX());
+    }
+
+    @Override
+    public void draw(GraphicsContext graphics, Point origin) {
+        for (int column = 0; column <= columnNumber; column++) {
+            graphics.setStroke(Color.GRAY);
+
+            // TODO: ADD ORIGIN
+            graphics.strokeLine((column - 0.5) * Cell.SIZE, 0.5 * Cell.SIZE, (column - 0.5) * Cell.SIZE, (rowNumber + 0.5) * Cell.SIZE);
+        }
+        for (int row = 0; row <= rowNumber + 1; row++) {
+            graphics.setStroke(Color.GRAY);
+
+            // TODO: ADD ORIGIN
+            graphics.strokeLine(0.5 * Cell.SIZE, (row - 0.5) * Cell.SIZE, (columnNumber - 0.5) * Cell.SIZE, (row - 0.5) * Cell.SIZE);
+        }
+        for (Cell cell : cells) cell.draw(graphics, origin);
     }
 }
