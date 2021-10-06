@@ -73,7 +73,7 @@ public class Map implements IDrawable {
             }
         }
         for (int index = 0; index < totalNumber; index++) {
-            if (!(cells.get(index) instanceof ShelfCell)) cells.set(index, new EmptyCell(index / totalNumber, index % totalNumber));
+            if (!(cells.get(index) instanceof ShelfCell)) cells.set(index, new EmptyCell(index / rowNumber, index % rowNumber));
         }
         snake = new Snake(this, new Point(1, rowNumber - 1), Direction.RIGHT);
 
@@ -93,10 +93,10 @@ public class Map implements IDrawable {
     public boolean check(int column, int row) { return column >= 0 && column < columnNumber && row >= 0 && row < rowNumber; }
     public boolean check(Point point) { return check(point.getX(), point.getY()); }
     public int convert(int column, int row) {
-        return row * columnNumber + column;
+        return column * rowNumber + row;
     }
     public int convert(Point point) {
-        return convert(point.getY(), point.getX());
+        return convert(point.getX(), point.getY());
     }
 
     @Override
