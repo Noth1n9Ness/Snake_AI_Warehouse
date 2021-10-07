@@ -69,11 +69,20 @@ public class Map implements IDrawable {
                     int row = 2 + 3 * shelf;
                     int column = 2 + (shelfLength + 2) * block - 1 + shelfIndex;
                     cells.set(convert(column, row), new ShelfCell(column, row));
+                    int random = (int) (Math.random()*100);
+                    if (random <= 22) {
+                        cells.set(convert(column, row + 1), new InventoryCell(column, row + 1));
+                    } else if (random <= 44) {
+                        cells.set(convert(column, row -1 ), new InventoryCell(column, row -1));
+                    } else if (random <= 50 ) {
+                        cells.set(convert(column, row + 1), new InventoryCell(column, row + 1));
+                        cells.set(convert(column, row -1 ), new InventoryCell(column, row -1));
+                    }
                 }
             }
         }
         for (int index = 0; index < totalNumber; index++) {
-            if (!(cells.get(index) instanceof ShelfCell)) cells.set(index, new EmptyCell(index / rowNumber, index % rowNumber));
+            if ((cells.get(index) == null)) cells.set(index, new EmptyCell(index / rowNumber, index % rowNumber));
         }
         snake = new Snake(this, new Point(1, rowNumber - 1), Direction.RIGHT);
 

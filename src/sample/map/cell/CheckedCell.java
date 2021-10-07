@@ -22,7 +22,8 @@ public class CheckedCell extends Cell{
 
     @Override
     public void draw(GraphicsContext graphics, Point origin) {
-        graphics.setStroke(Color.GRAY);
-        super.draw(graphics, origin);
+        graphics.setFill(Color.GRAY);
+        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
+        graphics.fillRect(point.getX(), point.getY(), SIZE, SIZE);
     }
 }

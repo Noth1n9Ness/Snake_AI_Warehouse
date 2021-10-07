@@ -37,7 +37,7 @@ public class Visualizer {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         };
         map = new Map();
-        map.setMap(7, 4, 8);
+        map.setMap(7, 2, 8);
         algorithm = new BreadthFirstSearch(map, map.getSnake());
         //
 

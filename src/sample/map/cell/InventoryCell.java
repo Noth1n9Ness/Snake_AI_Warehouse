@@ -15,8 +15,9 @@ public class InventoryCell extends Cell{
 
     @Override
     public void draw(GraphicsContext graphics, Point origin) {
-        graphics.setStroke(Color.RED);
-        super.draw(graphics, origin);
+        graphics.setFill(Color.RED);
+        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
+        graphics.fillRect(point.getX(), point.getY(), SIZE, SIZE);
     }
 
     @Override
