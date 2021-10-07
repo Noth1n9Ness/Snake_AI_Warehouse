@@ -4,24 +4,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import sample.map.snake.Body;
 import sample.map.snake.Snake;
+import sample.misc.PivotImage;
 import sample.misc.Point;
 
 public class BodyCell extends Cell {
     private Body body;
-    public BodyCell(Body body) {
-        super();
+    public BodyCell(Body body, int row, int column, PivotImage image) {
+        super(row, column, image);
         this.body = body;
     }
-    public BodyCell(Body body, int row, int column) {
-        super(row, column);
+    public BodyCell(Body body, Point position, PivotImage image) {
+        super(position, image);
         this.body = body;
-    }
-
-    @Override
-    public void draw(GraphicsContext graphics, Point origin) {
-        graphics.setFill(Color.GREEN);
-        Point point = Point.sub(Point.add(origin, Point.mul(getPoint(), SIZE)), new Point(-SIZE / 2, -SIZE / 2));
-        graphics.fillOval(point.getX(), point.getY(), SIZE, SIZE);
     }
 
     @Override
