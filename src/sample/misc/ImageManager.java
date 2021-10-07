@@ -3,6 +3,8 @@ package sample.misc;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -12,11 +14,15 @@ public class ImageManager {
     public static PivotImage getPivotImage(String name, int flag) {
         return dictionary.get(name).get(flag);
     }
-    private static PixelReader reader =  new Image("D:\\GerMakame Stodiu 2\\L Game\\Snake_AI_Warehouse\\img\\spritesheet.png").getPixelReader();
+    private static PixelReader reader;
     public static int SIZE = 8;
     private static Point DIMENSION = new ImmutablePoint(SIZE, SIZE);
     static {
-
+        try {
+            reader = new Image(new FileInputStream("img/spritesheet.png")).getPixelReader();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         Dictionary<Integer, PivotImage> info;
         dictionary.put("head", info = new Hashtable<>());
         info.put(0b0001, createPivotImage(0, 0));

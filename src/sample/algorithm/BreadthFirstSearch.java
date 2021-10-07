@@ -29,7 +29,7 @@ public class BreadthFirstSearch implements Algorithm{
     private LinkedList<IDirection>[] trace;
     private int[] distance;
     private Queue<DirectedCell> queue;
-    private ArrayList<Cell> visitedCells;
+    private ArrayList<CheckedCell> visitedCells;
     private DirectedCell current;
     private int count;
     private boolean found;
@@ -100,9 +100,10 @@ public class BreadthFirstSearch implements Algorithm{
                             savedIndex = nextIndex;
                             break;
                         }
-                        map.getCells().set(nextIndex, new CheckedCell(next.getPoint(), map.getCell(nextIndex), ImageManager.getPivotImage("checked", 0)));
+                        CheckedCell checkedCell = new CheckedCell(next.getPoint(), map.getCell(nextIndex), ImageManager.getPivotImage("checked", 0));
+                        map.getCells().set(nextIndex, checkedCell);
                         visited[nextIndex] = true;
-                        visitedCells.add(next);
+                        visitedCells.add(checkedCell);
                     }
                 }
             }
@@ -136,8 +137,8 @@ public class BreadthFirstSearch implements Algorithm{
 //            Start();
                     iter = trace[savedIndex].iterator();
                     iter.next();
-                    for (Cell cell : visitedCells) {
-                        map.getCells().set(map.convert(cell.getPoint()), new EmptyCell(cell.getRow(), cell.getColumn()));
+                    for (CheckedCell cell : visitedCells) {
+                        map.getCells().set(map.convert(cell.getPoint()), cell.getOriginCell());
                     }
                     isMoving = true;
                 }
