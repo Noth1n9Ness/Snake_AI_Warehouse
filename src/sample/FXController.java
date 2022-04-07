@@ -11,6 +11,9 @@ import sample.algorithm.BreadthFirstSearch;
 import sample.graphics.Visualizer;
 import sample.map.Map;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class FXController
 {
     // private Map map = new Map();
@@ -34,6 +37,8 @@ public class FXController
     @FXML
     private void initialize()
     {
+        GraphicsContext graphics = canvas.getGraphicsContext2D();
+        graphics.setImageSmoothing(false);
     }
 
     @FXML
@@ -42,9 +47,22 @@ public class FXController
         outputText.setText(inputText.getText());
     }
 
+    boolean a = true;
     @FXML
     private void moveSnake(ActionEvent event) {
-        GraphicsContext graphics = canvas.getGraphicsContext2D();
-        visualizer.draw(graphics);
+        if (a) {
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    GraphicsContext graphics = canvas.getGraphicsContext2D();
+                    visualizer.draw(graphics);
+                }
+            };
+            timer.scheduleAtFixedRate(task, 0, 100);
+            a = false;
+        }
+//        GraphicsContext graphics = canvas.getGraphicsContext2D();
+//        visualizer.draw(graphics);
     }
 }

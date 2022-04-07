@@ -5,11 +5,7 @@ import sample.map.snake.Snake;
 import sample.misc.Point;
 
 public class NullCell extends Cell{
-    protected NullCell() { }
-    @Override
-    public void draw(GraphicsContext graphics, Point origin) {
-
-    }
+    protected NullCell() { super(null);}
     @Override
     public boolean checkMove() {
         return false;

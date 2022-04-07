@@ -10,7 +10,7 @@ public class DirectedCell extends Cell implements IDirection {
     private Cell cell;
     private Direction direction;
     public DirectedCell(Cell cell, Direction direction) {
-        super(cell.getRow(), cell.getColumn());
+        super(cell.getRow(), cell.getColumn(), null);
         this.cell = cell;
         this.direction = direction;
     }
@@ -22,11 +22,6 @@ public class DirectedCell extends Cell implements IDirection {
     @Override
     public boolean tryMove(Snake snake) {
         return cell.tryMove(snake);
-    }
-
-    @Override
-    public void draw(GraphicsContext graphics, Point origin) {
-        cell.draw(graphics, origin);
     }
 
     public Direction getDirection() {
